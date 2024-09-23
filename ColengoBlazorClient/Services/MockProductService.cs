@@ -54,7 +54,7 @@ namespace ColengoBlazorClient.Services
                     Name = $"Product {i}",
                     Title = $"Title {i}",
                     ThumbnailImage = $"https://example.com/images/product{i}.jpg",
-                    Price = new PriceDto {  Amount = random.Next(10, 500) },
+                    Price = new PriceDto {  Amount = random.Next(10, 500), Currency = "EUR"},
                     OriginalPrice = new PriceDto {  Amount = random.Next(500, 1000) },
                     Brand = new BrandDto { Name = $"Brand {random.Next(1, 10)}" },
                     Sold = random.Next(1, 100),

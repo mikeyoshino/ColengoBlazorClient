@@ -32,9 +32,8 @@ namespace ColengoBlazorClient.Services
                 getProductResponse.Products = result.Products;
                 getProductResponse.TotalPages = result.TotalPages;
 
-                return getProductResponse;
             }
-            return null;
+            return getProductResponse;
         }
     }
 }
