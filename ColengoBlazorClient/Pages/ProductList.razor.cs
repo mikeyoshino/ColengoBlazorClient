@@ -7,7 +7,7 @@ namespace ColengoBlazorClient.Pages
     public partial class ProductList
     {
         [Inject] public IDisplayProductService? DisplayProductService { get; set; }
-        public GetProductResponse? GetProductResponse { get; set; }
+        public GetProductResponse? GetProductResponse = new GetProductResponse();
 
         private List<string> paginationPages = new List<string>();
         private int currentPage = 1;
@@ -79,12 +79,13 @@ namespace ColengoBlazorClient.Pages
         private async Task SearchProducts(ChangeEventArgs e)
         {
             searchTerm = e.Value.ToString();
-            if (DisplayProductService != null)
-            {
-                var response = await DisplayProductService.GetProducts(currentPage, 10, searchTerm);
-                if (response.Products != null)
-                    GetProductResponse = response;
-            }
+            GetProductResponse.Products = GetProductResponse.Products.Where(p => p.Title.Contains(searchTerm)).ToList();
+        }
+        private string GetFullPhotoUrl(string relativePath)
+        {
+            var baseUrl = "https://tabledusud.nl/";
+            var fullUri = new Uri(new Uri(baseUrl), relativePath);
+            return fullUri.ToString();
         }
 
 
